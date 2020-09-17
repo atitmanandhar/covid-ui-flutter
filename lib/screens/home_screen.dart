@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:covid_ui_flutter/screens/loading_screen.dart';
 import 'package:covid_ui_flutter/screens/global_screen.dart';
 import 'package:covid_ui_flutter/screens/countries_screen.dart';
 import 'package:covid_ui_flutter/screens/about_us_screen.dart';
 
 class HomeScreen extends StatefulWidget {
-  HomeScreen({this.globalData});
+  HomeScreen({this.globalData, this.countryData});
 
-  final globalData;
+  final globalData, countryData;
 
   @override
   _HomeScreenState createState() => _HomeScreenState();
@@ -27,7 +26,9 @@ class _HomeScreenState extends State<HomeScreen> {
     screen1 = GlobalScreen(
       globalData: widget.globalData,
     );
-    screen2 = CountriesScreen();
+    screen2 = CountriesScreen(
+      countryData: widget.countryData,
+    );
     screen3 = AboutUsScreen();
 
     pages = [screen1, screen2, screen3];

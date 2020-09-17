@@ -9,21 +9,28 @@ class LoadingScreen extends StatefulWidget {
 }
 
 class _LoadingScreenState extends State<LoadingScreen> {
-  void getGlobalData() async {
-    NetworkHelper networkHelper =
+  void getInfo() async {
+    NetworkHelper globalAPI =
         NetworkHelper(url: 'https://coronavirus-19-api.herokuapp.com/all');
-    var globalData = await networkHelper.getData();
+    NetworkHelper countryAPI = NetworkHelper(
+        url: 'https://coronavirus-19-api.herokuapp.com/countries');
+
+    var globalData = await globalAPI.getData();
+    var countryData = await countryAPI.getData();
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(
-        builder: (context) => HomeScreen(globalData: globalData),
+        builder: (context) => HomeScreen(
+          globalData: globalData,
+          countryData: countryData,
+        ),
       ),
     );
   }
 
   @override
   void initState() {
-    getGlobalData();
+    getInfo();
     super.initState();
   }
 
