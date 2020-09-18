@@ -40,7 +40,7 @@ class _CountriesScreenState extends State<CountriesScreen> {
     if (query.isNotEmpty) {
       List<CountryWiseData> dummyListData = [];
       dummySearchList.forEach((item) {
-        if (item.country.contains(query)) {
+        if (item.country.toLowerCase().contains(query)) {
           dummyListData.add(item);
         }
       });
@@ -48,7 +48,7 @@ class _CountriesScreenState extends State<CountriesScreen> {
         countryWiseData.clear();
         countryWiseData.addAll(dummyListData);
       });
-      return;
+      // return;
     } else {
       setState(() {
         countryWiseData.clear();
