@@ -3,6 +3,7 @@ class CountryWiseData {
     this.country,
     this.cases,
     this.todayCases,
+    this.activeCases,
     this.deaths,
     this.todayDeaths,
     this.recovered,
@@ -10,5 +11,5 @@ class CountryWiseData {
   });
 
   String country;
-  int cases, todayCases, deaths, todayDeaths, recovered, critical;
+  int cases, todayCases, activeCases, deaths, todayDeaths, recovered, critical;
 }

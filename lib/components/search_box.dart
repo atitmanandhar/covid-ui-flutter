@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 
 class SearchBox extends StatelessWidget {
+  SearchBox({this.trigger});
+
+  final Function trigger;
+
   @override
   Widget build(BuildContext context) {
     return TextField(
@@ -33,9 +37,7 @@ class SearchBox extends StatelessWidget {
           color: Colors.white,
         ),
       ),
-      onChanged: (value) {
-        print(value);
-      },
+      onChanged: trigger,
     );
   }
 }

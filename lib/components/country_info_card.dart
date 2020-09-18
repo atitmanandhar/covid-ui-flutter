@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class CountryInfoCard extends StatelessWidget {
   CountryInfoCard({
@@ -20,6 +21,8 @@ class CountryInfoCard extends StatelessWidget {
       deathsToday,
       recovered,
       critical;
+
+  final digitFormatter = new NumberFormat("#,###");
 
   @override
   Widget build(BuildContext context) {
@@ -49,13 +52,15 @@ class CountryInfoCard extends StatelessWidget {
                 children: [
                   TextSpan(
                     text:
-                        'Cases: $cases | Today: $casesToday | Active: $casesActive\n',
+                        'Cases: ${digitFormatter.format(cases)} | Today: ${digitFormatter.format(casesToday)} | Active: ${casesActive != null ? digitFormatter.format(casesActive) : 'unavailable'} \n',
                   ),
                   TextSpan(
-                    text: 'Deaths: $deaths | Today: $deathsToday\n',
+                    text:
+                        'Deaths: ${digitFormatter.format(deaths)} | Today: ${digitFormatter.format(deathsToday)}\n',
                   ),
                   TextSpan(
-                    text: 'Recovered: $recovered | Critical: $critical',
+                    text:
+                        'Recovered: ${recovered != null ? digitFormatter.format(recovered) : 'unavailable'} | Critical: ${digitFormatter.format(critical)}',
                   ),
                 ],
               ),
