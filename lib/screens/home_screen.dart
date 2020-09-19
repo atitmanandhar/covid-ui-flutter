@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:covid_ui_flutter/screens/global_screen.dart';
 import 'package:covid_ui_flutter/screens/countries_screen.dart';
 import 'package:covid_ui_flutter/screens/about_us_screen.dart';
+import 'package:flutter/services.dart';
 
 class HomeScreen extends StatefulWidget {
   HomeScreen({this.globalData, this.countryData});
@@ -40,6 +41,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
     return Scaffold(
       body: currentPage,
       bottomNavigationBar: BottomNavigationBar(

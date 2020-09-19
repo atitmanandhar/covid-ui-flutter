@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:covid_ui_flutter/services/network_helper.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:covid_ui_flutter/screens/home_screen.dart';
+import 'package:covid_ui_flutter/screens/internet_unavailable_screen.dart';
+import 'package:connectivity/connectivity.dart';
 
 class LoadingScreen extends StatefulWidget {
   @override
@@ -28,9 +30,23 @@ class _LoadingScreenState extends State<LoadingScreen> {
     );
   }
 
+  void checkConnection() async {
+    var connectivityResult = await (Connectivity().checkConnectivity());
+    if (connectivityResult == ConnectivityResult.none) {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => InternetUnavailableScreen(context),
+        ),
+      );
+    } else {
+      getInfo();
+    }
+  }
+
   @override
   void initState() {
-    getInfo();
+    checkConnection();
     super.initState();
   }
 
